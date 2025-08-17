@@ -42,7 +42,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("background2.png");
+  background-image: url("../assets/background2.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -464,132 +464,132 @@ h2 {
 }
 
 .pokeball {
-  background-image: url("pokeball.png");
+  background-image: url("..assets/pokeball.png");
   background-size: cover;
 }
 
 .greatball {
-  background-image: url("greatball.png");
+  background-image: url("..assets/greatball.png");
   background-size: cover;
 }
 
 .ultraball {
-  background-image: url("ultraball.png");
+  background-image: url("..assets/ultraball.png");
   background-size: cover;
 }
 
 .sanaball {
-  background-image: url("ultraball.png");
+  background-image: url("../assets/ultraball.png");
   background-size: cover;
 }
 
 .safariball {
-  background-image: url("safariball.png");
+  background-image: url("../assets/safariball.png");
   background-size: cover;
 }
 
 .masterball {
-  background-image: url("masterball.png");
+  background-image: url("../assets/masterball.png");
   background-size: cover;
 }
 
 .netball {
-  background-image: url("netball.png");
+  background-image: url("../assets/netball.png");
   background-size: cover;
 }
 
 .parkball {
-  background-image: url("parkball.png");
+  background-image: url("../assets/parkball.png");
   background-size: cover;
 }
 
 .nestball {
-  background-image: url("nestball.png");
+  background-image: url("../assets/nestball.png");
   background-size: cover;
 }
 
 .quickball {
-  background-image: url("quickball.png");
+  background-image: url("../assets/quickball.png");
   background-size: cover;
 }
 
 .sanaball {
-  background-image: url("sanaball.png");
+  background-image: url("../assets/sanaball.png");
   background-size: cover;
 }
 
 .beastball {
-  background-image: url("beastball.png");
+  background-image: url("../assets/beastball.png");
   background-size: cover;
 }
 
 .diveball {
-  background-image: url("diveball.png");
+  background-image: url("../assets/diveball.png");
   background-size: cover;
 }
 
 .duskball {
-  background-image: url("duskball.png");
+  background-image: url("../assets/duskball.png");
   background-size: cover;
 }
 
 .friendball {
-  background-image: url("friendball.png");
+  background-image: url("../assets/friendball.png");
   background-size: cover;
 }
 
 .heavyball {
-  background-image: url("heavyball.png");
+  background-image: url("../assets/heavyball.png");
   background-size: cover;
 }
 
 .honorball {
-  background-image: url("honorball.png");
+  background-image: url("../assets/honorball.png");
   background-size: cover;
 }
 
 .levelball {
-  background-image: url("levelball.png");
+  background-image: url("../assets/levelball.png");
   background-size: cover;
 }
 
 .loveball {
-  background-image: url("loveball.png");
+  background-image: url("../assets/loveball.png");
   background-size: cover;
 }
 
 .lureball {
-  background-image: url("lureball.png");
+  background-image: url("../assets/lureball.png");
   background-size: cover;
 }
 
 .luxuryball {
-  background-image: url("luxuryball.png");
+  background-image: url("../assets/luxuryball.png");
   background-size: cover;
 }
 
 .moonball {
-  background-image: url("moonball.png");
+  background-image: url("../assets/moonball.png");
   background-size: cover;
 }
 
 .preciousball {
-  background-image: url("preciousball.png");
+  background-image: url("../assets/preciousball.png");
   background-size: cover;
 }
 
 .fastball {
-  background-image: url("fastball.png");
+  background-image: url("../assets/fastball.png");
   background-size: cover;
 }
 
 .repeatball {
-  background-image: url("repeatball.png");
+  background-image: url("../assets/repeatball.png");
   background-size: cover;
 }
 
 .timerball {
-  background-image: url("timerball.png");
+  background-image: url("../assets/timerball.png");
   background-size: cover;
 }
 
