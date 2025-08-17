@@ -205,10 +205,10 @@ const trivia = [
   ],
   [
     "Poliwag y Oddish evolucionan de forma similar, primero lineal y luego ramificada, y comparten colores similares al evolucionar.",
-    "Es el Pokémon favorito de Satoshi Tajiri12. Aunque, en una entrevista a Famimaga 64 para la edición de noviembre de 1997, dice que es Poliwhirl3."
+    "Es el Pokémon favorito de Satoshi Tajiri. Aunque, en una entrevista a Famimaga 64 para la edición de noviembre de 1997, dice que es Poliwhirl."
   ],
   [
-    "El Pokémon favorito de Satoshi Tajiri es Poliwag12. Aunque, en una entrevista a Famimaga 64 para la edición de noviembre de 1997, dice que es Poliwhirl3."
+    "El Pokémon favorito de Satoshi Tajiri es Poliwag. Aunque, en una entrevista a Famimaga 64 para la edición de noviembre de 1997, dice que es Poliwhirl."
   ],
   [],
   [
