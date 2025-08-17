@@ -103,6 +103,11 @@ body::after {
   cursor: pointer;
   box-shadow: 6px 5px 2px black;
 
+
+}
+
+.answer-text-with-images:hover {
+  transform: scale(1.1);
 }
 
 .add-audio-button {
@@ -126,6 +131,8 @@ body::after {
   background-color: white;
   color: black;
   border: 3px solid black;
+  transform: scale(1.1);
+
 }
 
 
@@ -225,6 +232,7 @@ body::after {
 
 .continuar:hover {
   box-shadow: 2px 1px 2px transparent;
+  transform: scale(1.1);
 
   background-color: transparent;
   color: rgb(255, 255, 255);
@@ -233,6 +241,7 @@ body::after {
 
 .comenzar:hover {
   box-shadow: 2px 1px 2px black;
+  transform: scale(1.1);
 
   border: 3px solid black;
 }
@@ -240,6 +249,7 @@ body::after {
 
 .answer-text:hover {
   box-shadow: 2px 1px 2px black;
+  transform: scale(1.1);
 
   background-color: white;
   color: black;
@@ -461,6 +471,8 @@ h2 {
   box-shadow: 2px 1px 2px black;
   background-color: white;
   border: 3px solid black;
+  transform: scale(1.1);
+
 }
 
 .pokeball {
