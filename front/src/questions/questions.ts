@@ -994,8 +994,6 @@ const whatsTheMultiplierDamageOfMoveTypeAgainsTypeCombination = async (): Promis
 
 const generateWhichPokemonHasHighestBaseHPQuestion = async (maxPokedexIndex: number): Promise<QUESTION> => {
 
-
-
     const pokemonNamesAndIndexes = await getRandomPokemonNamesAndIndexes(4, maxPokedexIndex);
     //get the base HP of each pokemon
     const pokemonBaseHPs = await Promise.all(pokemonNamesAndIndexes.map(pokemon => getPokemonBaseHP(pokemon.index)));
@@ -1058,6 +1056,8 @@ los demás tienen: ${incorrectPairPokemonBaseHP.join(', ')}.`
         answers: answers
     }
 }
+
+
 
 const generateWhichPokemonHasHighestBaseAttackQuestion = async (maxPokedexIndex: number): Promise<QUESTION> => {
 
@@ -1822,54 +1822,58 @@ const generateLevelballQuizz = async () => {
 const generateMasterballLevelQuizz = async () => {
     //all modes
     const questions = [];
-    const mode = Math.floor(Math.random() * 15);
+    const mode = Math.floor(Math.random() * 14);
+    console.log(`The mode for the masterball level quizz is ${mode}`);
     switch (mode) {
         case 0:
-            questions.push(await generateWhosThatPokemonQuestion(1025));
+            questions.push(...await generateNidoballLevelQuizz());
+
             break;
         case 1:
-            questions.push(await generateWhatTypeIsThisPokemonQuestion(1025));
+            questions.push(...await generatePokeballLevelQuizz());
             break;
         case 2:
-            questions.push(await whatDoesThisAbilityDoQuestion(1025));
+            questions.push(...await generateGreatballLevelQuizz());
             break;
         case 3:
-            questions.push(await whatsThePowerOfThisMoveQuestion(1025));
+            questions.push(...await generateUltraballLevelQuizz());
             break;
         case 4:
-            questions.push(await generateWhatIsTheTargetOfThisMoveQuestion(1025));
+            questions.push(...await generateSafariballLevelQuizz());
             break;
         case 5:
-            questions.push(await generateWhoThisCryBelongsToQuestion(1025));
+            questions.push(...await generateSanaballLevelQuizz());
             break;
         case 6:
-            questions.push(await whatsTheAccuracyOfThisMoveQuestion(1025));
+            questions.push(...await generateLureballLevelQuizz());
             break;
         case 7:
-            questions.push(await generateSelectTheCorrectCryForThisPokemonQuestion(1025));
+            questions.push(...await generateParkballLevelQuizz());
             break;
         case 8:
-            questions.push(await whatsTheMultiplierDamageOfMoveTypeAgainsTypeCombination());
+            questions.push(...await generateFriendballLevelQuizz());
             break;
         case 9:
-            questions.push(await generateWhichOfTheseMovesDoesPokemonKnowQuestion(1025));
+            questions.push(...await generateLevelballQuizz());
             break;
+
         case 10:
-            questions.push(await generateWhichOfThesePokemonCanHaveAbilityQuestion(1025));
+            questions.push(...await generateDuskballLevelQuizz());
             break;
         case 11:
-            questions.push(await whatDoesThisAbilityDoQuestion(1025));
+            questions.push(...await generateQuickballLevelQuizz(1025));
             break;
         case 12:
-            questions.push(await generateWhatTypeIsThisMoveQuestion(1025));
+            questions.push(...await generateLoveballLevelQuizz());
             break;
         case 13:
-            questions.push(await generateWhatDoesThisMoveDoQuestion(1025));
+            questions.push(...await generateHeavyballLevelQuizz());
             break;
-        case 14:
-            questions.push(await generateWhichOfThesePokemonIsTheFastestOneQuestion(1025));
+        default:
+            questions.push(...await generateNidoballLevelQuizz());
             break;
     }
+    console.log(`The questions for the masterball level quizz are: ${JSON.stringify(questions)}`);
     return questions;
 }
 
@@ -1911,6 +1915,8 @@ const generateQuizz = async (difficulty: string) => {
             return await generateLureballLevelQuizz();
         case "heavyball":
             return await generateHeavyballLevelQuizz();
+        case "fastball":
+            return await generateQuickballLevelQuizz(1025);
         case "quickball":
             return await generateQuickballLevelQuizz(1025);
         case "loveball":
