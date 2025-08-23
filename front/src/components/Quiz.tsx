@@ -16,7 +16,9 @@ import {
     addUltraballLevelQuestionToQuizz,
     addLevelballQuestionToQuizz,
     addFriendballLevelQuestionToQuizz,
-    addParkballLevelQuestionToQuizz
+    addParkballLevelQuestionToQuizz,
+    addHonorballLevelQuestionToQuizz,
+    addRepeatballLevelQuestionToQuizz
 
 } from '../questions/questions'
 import JSConfetti from 'js-confetti'
@@ -44,8 +46,14 @@ export default function Quiz(
 
     const addQuestionToQuiz = async () => {
         if (hasStarted && currentQuestionIndex === questions.length - 1) {
+            console.log("Adding question to quiz: " + quizzMode)
             if (quizzMode === "loveball") {
                 const promise = addLoveballLevelQuestionToQuizz(questions).then(newQuestions => {
+                    setQuestions(newQuestions)
+                })
+            }
+            if (quizzMode === "honorball") {
+                const promise = addHonorballLevelQuestionToQuizz(questions).then(newQuestions => {
                     setQuestions(newQuestions)
                 })
             }
@@ -111,6 +119,11 @@ export default function Quiz(
             }
             else if (quizzMode === "levelball") {
                 const promise = addLevelballQuestionToQuizz(questions).then(newQuestions => {
+                    setQuestions(newQuestions)
+                })
+            }
+            else if (quizzMode === "repeatball") {
+                const promise = addRepeatballLevelQuestionToQuizz(questions).then(newQuestions => {
                     setQuestions(newQuestions)
                 })
             }

@@ -73,6 +73,219 @@ const generateOnIncorrectMessage = (correctAnswer: string) => {
 }
 
 //Different types of questions:
+const generateWhatsTheCaptureRateOfThisPokemonQuestion = async (maxPokedexIndex: number): Promise<QUESTION> => {
+    const pokemon = await getPokemonSpecies(Math.floor(Math.random() * maxPokedexIndex) + 1);
+    const captureRate = pokemon.capture_rate;
+    const picture = await getPokemonImageURL(pokemon.id);
+    const trivia = await generatePokemonTrivia(pokemon.id);
+    //Generate 3 random incorrect answers
+    const incorrectAnswers = [];
+    while (incorrectAnswers.length < 3) {
+        const randomCaptureRate = Math.floor(Math.random() * 256) + 1;
+        if (randomCaptureRate !== captureRate && !incorrectAnswers.includes(randomCaptureRate)) {
+            incorrectAnswers.push(randomCaptureRate);
+        }
+    }
+    //Put the correct answer in a random position
+    const correctAnswerIndex = Math.floor(Math.random() * 4);
+    const answers = [];
+    for (let i = 0; i < 4; i++) {
+        if (i === correctAnswerIndex) {
+            answers.push({
+                isCorrect: true,
+                answerText: captureRate.toString(),
+                answerImages: [],
+                answerAudios: []
+            });
+        } else {
+            answers.push({
+                isCorrect: false,
+                answerText: incorrectAnswers.pop()!.toString(),
+                answerImages: [],
+                answerAudios: []
+            });
+        }
+    }
+
+    return {
+        questionText: `¿Cuál es el ratio de captura de ${capitalizeFirstLetter(pokemon.name)}?`,
+        questionImages: [picture],
+        questionAudios: [],
+        allowsMultipleAnswers: false,
+        score: 1,
+        onCorrectText: generateOnCorrectPrefix() + `¡Así es! El ratio de captura de ${capitalizeFirstLetter(pokemon.name)} es ${captureRate}. ${trivia}`,
+        onCorrectImages: [picture],
+        onCorrectAudios: [],
+        onIncorrectText: generateOnIncorrectMessage(captureRate.toString()),
+        onIncorrectImages: [picture],
+        onIncorrectAudios: [],
+        answers: answers
+    }
+}
+
+const generateRepeatBallLevelQuizz = async (): Promise<QUESTION[]> => {
+    const questions: QUESTION[] = [];
+    const questionType = 0
+    switch (questionType) {
+        case 0:
+            questions.push(await generateWhatsTheCaptureRateOfThisPokemonQuestion(1025));
+            break;
+
+    }
+    return questions;
+}
+
+const addRepeatballLevelQuestionToQuizz = async (currentQuestions: QUESTION[]): Promise<QUESTION[]> => {
+    const newQuestions = [...currentQuestions];
+    const newQuestion = await generateWhatsTheCaptureRateOfThisPokemonQuestion(1025);
+    newQuestions.push(newQuestion);
+    return newQuestions;
+}
+
+const generateIsThisALegendaryPokemonQuestion = async (maxPokedexIndex: number): Promise<QUESTION> => {
+    const pokemon = await getPokemonSpecies(Math.floor(Math.random() * maxPokedexIndex) + 1);
+    const isLegendary = pokemon.is_legendary;
+    const picture = await getPokemonImageURL(pokemon.id);
+    const trivia = await generatePokemonTrivia(pokemon.id);
+    return {
+        questionText: `¿Es ${capitalizeFirstLetter(pokemon.name)} un Pokémon legendario?`,
+        questionImages: [picture],
+        questionAudios: [],
+        allowsMultipleAnswers: false,
+        score: 1,
+        onCorrectText: isLegendary
+            ?
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} es un Pokémon legendario ${trivia}`
+            :
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon legendario ${trivia}`,
+        onCorrectImages: [picture],
+        onCorrectAudios: [],
+        onIncorrectText: isLegendary
+            ?
+            generateOnIncorrectMessage(`Sí, ${capitalizeFirstLetter(pokemon.name)} es un Pokémon legendario.`)
+            :
+            generateOnIncorrectMessage(`No, ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon legendario.`),
+        onIncorrectImages: [picture],
+        onIncorrectAudios: [],
+        answers: [
+            {
+                isCorrect: isLegendary,
+                answerText: "Sí",
+                answerImages: [],
+                answerAudios: []
+            },
+            {
+                isCorrect: !isLegendary,
+                answerText: "No",
+                answerImages: [],
+                answerAudios: []
+            }
+        ]
+    }
+}
+
+const generateIsThisABabyPokemonQuestion = async (maxPokedexIndex: number): Promise<QUESTION> => {
+    const pokemon = await getPokemonSpecies(Math.floor(Math.random() * maxPokedexIndex) + 1);
+    const isBaby = pokemon.is_baby;
+    const picture = await getPokemonImageURL(pokemon.id);
+    const trivia = await generatePokemonTrivia(pokemon.id);
+    return {
+        questionText: `¿Es ${capitalizeFirstLetter(pokemon.name)} un Pokémon bebé?`,
+        questionImages: [picture],
+        questionAudios: [],
+        allowsMultipleAnswers: false,
+        score: 1,
+        onCorrectText: isBaby
+            ?
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} es un Pokémon bebé. ${trivia}`
+            :
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon bebé. ${trivia}`,
+        onCorrectImages: [picture],
+        onCorrectAudios: [],
+        onIncorrectText: isBaby
+            ?
+            generateOnIncorrectMessage(`Sí, ${capitalizeFirstLetter(pokemon.name)} es un Pokémon bebé.`)
+            :
+            generateOnIncorrectMessage(`No, ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon bebé.`),
+        onIncorrectImages: [picture],
+        onIncorrectAudios: [],
+        answers: [
+            {
+                isCorrect: isBaby,
+                answerText: "Sí",
+                answerImages: [],
+                answerAudios: []
+            },
+            {
+                isCorrect: !isBaby,
+                answerText: "No",
+                answerImages: [],
+                answerAudios: []
+            }
+        ]
+    }
+}
+
+const generateIsThisAMythicalPokemonQuestion = async (maxPokedexIndex: number): Promise<QUESTION> => {
+    const pokemon = await getPokemonSpecies(Math.floor(Math.random() * maxPokedexIndex) + 1);
+    const isMythical = pokemon.is_mythical;
+    const picture = await getPokemonImageURL(pokemon.id);
+    const trivia = await generatePokemonTrivia(pokemon.id);
+    return {
+        questionText: `¿Es ${capitalizeFirstLetter(pokemon.name)} un Pokémon mítico?`,
+        questionImages: [picture],
+        questionAudios: [],
+        allowsMultipleAnswers: false,
+        score: 1,
+        onCorrectText: isMythical
+            ?
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} es un Pokémon mítico. ${trivia}`
+            :
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon mítico. ${trivia}`,
+        onCorrectImages: [picture],
+        onCorrectAudios: [],
+        onIncorrectText: isMythical
+            ?
+            generateOnIncorrectMessage(`Sí, ${capitalizeFirstLetter(pokemon.name)} es un Pokémon mítico.`)
+            :
+            generateOnIncorrectMessage(`No, ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon mítico.`),
+        onIncorrectImages: [picture],
+        onIncorrectAudios: [],
+        answers: [
+            {
+                isCorrect: isMythical,
+                answerText: "Sí",
+                answerImages: [],
+                answerAudios: []
+            },
+            {
+                isCorrect: !isMythical,
+                answerText: "No",
+                answerImages: [],
+                answerAudios: []
+            }
+        ]
+    }
+}
+
+const generateHonorballLevelQuizz = async (): Promise<QUESTION[]> => {
+    const questions: QUESTION[] = [];
+    console.log(`Generating Honorball level question`);
+    const questionType = Math.floor(Math.random() * 3);
+    switch (questionType) {
+        case 0:
+            questions.push(await generateIsThisAMythicalPokemonQuestion(1025));
+            break;
+        case 1:
+            questions.push(await generateIsThisALegendaryPokemonQuestion(1025));
+            break;
+        case 2:
+            questions.push(await generateIsThisABabyPokemonQuestion(1025));
+            break;
+
+    }
+    return questions;
+}
 
 const generateWhosThatPokemonQuestion = async (maxPokedexIndex: number): Promise<QUESTION> => {
 
@@ -1822,7 +2035,7 @@ const generateLevelballQuizz = async () => {
 const generateMasterballLevelQuizz = async () => {
     //all modes
     const questions = [];
-    const mode = Math.floor(Math.random() * 14);
+    const mode = Math.floor(Math.random() * 16);
     console.log(`The mode for the masterball level quizz is ${mode}`);
     switch (mode) {
         case 0:
@@ -1869,6 +2082,13 @@ const generateMasterballLevelQuizz = async () => {
         case 13:
             questions.push(...await generateHeavyballLevelQuizz());
             break;
+        case 14:
+            questions.push(...await generateRepeatBallLevelQuizz());
+            break;
+        case 15:
+            questions.push(...await generateHonorballLevelQuizz());
+            break;
+
         default:
             questions.push(...await generateNidoballLevelQuizz());
             break;
@@ -1911,6 +2131,10 @@ const generateHeavyballLevelQuizz = async () => {
 }
 const generateQuizz = async (difficulty: string) => {
     switch (difficulty) {
+        case "repeatball":
+            return await generateRepeatBallLevelQuizz();
+        case "honorball":
+            return await generateHonorballLevelQuizz();
         case "lureball":
             return await generateLureballLevelQuizz();
         case "heavyball":
@@ -1943,6 +2167,8 @@ const generateQuizz = async (difficulty: string) => {
             return await generateLevelballQuizz();
         case "parkball":
             return await generateParkballLevelQuizz();
+        case "quickball":
+            return await generateQuickballLevelQuizz(1025);
         default:
             return await generateNidoballLevelQuizz();
     }
@@ -1982,6 +2208,12 @@ const addPokeballLevelQuestionToQuizz = async (quizz: QUESTION[]): Promise<QUEST
 
 const addDuskballLevelQuestionToQuizz = async (quizz: QUESTION[]): Promise<QUESTION[]> => {
     const question = await generateDuskballLevelQuizz();
+    quizz.push(...question);
+    return quizz;
+}
+
+const addHonorballLevelQuestionToQuizz = async (quizz: QUESTION[]): Promise<QUESTION[]> => {
+    const question = await generateHonorballLevelQuizz();
     quizz.push(...question);
     return quizz;
 }
@@ -2039,4 +2271,4 @@ const addLevelballQuestionToQuizz = async (quizz: QUESTION[]): Promise<QUESTION[
     return quizz;
 }
 
-export { addParkballLevelQuestionToQuizz, addFriendballLevelQuestionToQuizz, addLevelballQuestionToQuizz, addLureballLevelQuestionToQuizz, addHeavyballLevelQuestionToQuizz, addDuskballLevelQuestionToQuizz, addLoveballLevelQuestionToQuizz, addMasterballLevelQuestionToQuizz, addQuickballLevelQuestionToQuizz, addSanaballLevelQuestionToQuizz, addSafariballLevelQuestionToQuizz, addUltraballLevelQuestionToQuizz, addGreatballLevelQuestionToQuizz, addPokeballLevelQuestionToQuizz, addNidoballLevelQuestionToQuizz, generateQuizz, generateWhatIsTheTargetOfThisMoveQuestion, generateAllQuestions, whatsThePowerOfThisMoveQuestion, generateWhosThatPokemonQuestion, generateWhoThisCryBelongsToQuestion, generateWhichOfTheseMovesDoesPokemonKnowQuestion, generateWhichOfThesePokemonCanHaveAbilityQuestion, whatDoesThisAbilityDoQuestion };
+export { addRepeatballLevelQuestionToQuizz, addHonorballLevelQuestionToQuizz, addParkballLevelQuestionToQuizz, addFriendballLevelQuestionToQuizz, addLevelballQuestionToQuizz, addLureballLevelQuestionToQuizz, addHeavyballLevelQuestionToQuizz, addDuskballLevelQuestionToQuizz, addLoveballLevelQuestionToQuizz, addMasterballLevelQuestionToQuizz, addQuickballLevelQuestionToQuizz, addSanaballLevelQuestionToQuizz, addSafariballLevelQuestionToQuizz, addUltraballLevelQuestionToQuizz, addGreatballLevelQuestionToQuizz, addPokeballLevelQuestionToQuizz, addNidoballLevelQuestionToQuizz, generateQuizz, generateWhatIsTheTargetOfThisMoveQuestion, generateAllQuestions, whatsThePowerOfThisMoveQuestion, generateWhosThatPokemonQuestion, generateWhoThisCryBelongsToQuestion, generateWhichOfTheseMovesDoesPokemonKnowQuestion, generateWhichOfThesePokemonCanHaveAbilityQuestion, whatDoesThisAbilityDoQuestion };
