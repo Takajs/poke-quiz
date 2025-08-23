@@ -37,19 +37,20 @@ export default function NthQuestion(
             }
             return (
                 <div className="question-images">
-                    {question.questionImages.map((img, i) => {
+                    {question?.questionImages && question.questionImages.map((img, i) => {
                         return <img className="image" key={i} src={img} alt='' />
                     })}
                 </div>
             )
         }
         const renderQuestionAudios = () => {
-            if (question.questionAudios.length === 0) {
+
+            if (question?.questionAudios && question.questionAudios?.length === 0) {
                 return <></>
             }
             return (
                 <div className="question-audios">
-                    {question.questionAudios.map((audio, i) => {
+                    {question?.questionAudios && question.questionAudios.map((audio, i) => {
                         return <audio key={i} src={audio} controls />
                     })}
                 </div>

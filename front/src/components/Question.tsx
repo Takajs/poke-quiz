@@ -275,7 +275,7 @@ export default function Question(
         <div className="question-container">
 
             <div className="answers-container">
-                <NthQuestion question={question} isCorrect={isCorrect} quizzMode={quizzMode}/>
+                <NthQuestion question={question} isCorrect={isCorrect} quizzMode={quizzMode} />
                 <Answers question={question} isCorrect={isCorrect} selectedAnswers={selectedAnswers} setSelectedAnswers={setSelectedAnswers} handleSubmitAnswers={handleSubmitAnswers} />
                 {isCorrect === null && renderSubmitAnswersButton()}
             </div>

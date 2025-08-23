@@ -96,7 +96,7 @@ export default function Answers(
 
         return (
             <div className="answers">
-                {question.answers.map((answer, i) => {
+                {question.answers && question.answers.map((answer, i) => {
                     return (
                         <div key={i} className="answer" onClick={() => { handleClickOnAnswer(answer) }}>
                             {renderAnswerText(answer)}
