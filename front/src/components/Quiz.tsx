@@ -132,6 +132,11 @@ export default function Quiz(
                     setQuestions(newQuestions)
                 })
             }
+            else if (quizzMode === "fastball") {
+                const promise = addQuickballLevelQuestionToQuizz(questions).then(newQuestions => {
+                    setQuestions(newQuestions)
+                })
+            }
 
             else {
                 console.error("Unknown quizz mode")

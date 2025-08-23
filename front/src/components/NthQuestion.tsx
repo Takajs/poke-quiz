@@ -17,7 +17,7 @@ export default function NthQuestion(
 
             if (question.questionText === '¿Cuál es este Pokémon?') {
                 const random = Math.floor(Math.random() * 2)
-                if ((random === 0 && quizzMode !== 'duskball') || quizzMode === 'nidoball') {
+                if ((random < 1 && quizzMode === 'duskball')) {
                     return (
                         <div className="question-images">
                             {question.questionImages.map((img, i) => {
@@ -26,6 +26,17 @@ export default function NthQuestion(
                         </div>
                     )
                 }
+
+                if(quizzMode === 'nidoball') {
+                                        return (
+                        <div className="question-images">
+                            {question.questionImages.map((img, i) => {
+                                return <img className="image" key={i} src={img} alt='' />
+                            })}
+                        </div>
+                    )
+                }
+
 
                 return (
                     <div className="question-images">

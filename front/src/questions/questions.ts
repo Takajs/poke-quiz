@@ -159,23 +159,23 @@ const generateIsThisALegendaryPokemonQuestion = async (maxPokedexIndex: number):
     const picture = await getPokemonImageURL(pokemon.id);
     const trivia = await generatePokemonTrivia(pokemon.id);
     return {
-        questionText: `¿Es ${capitalizeFirstLetter(pokemon.name)} un Pokémon legendario?`,
+        questionText: `¿Es ${capitalizeFirstLetter(pokemon.name)} un Pokémon Legendario?`,
         questionImages: [picture],
         questionAudios: [],
         allowsMultipleAnswers: false,
         score: 1,
         onCorrectText: isLegendary
             ?
-            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} es un Pokémon legendario ${trivia}`
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} es un Pokémon Legendario ${trivia}`
             :
-            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon legendario ${trivia}`,
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon Legendario ${trivia}`,
         onCorrectImages: [picture],
         onCorrectAudios: [],
         onIncorrectText: isLegendary
             ?
-            generateOnIncorrectMessage(`Sí, ${capitalizeFirstLetter(pokemon.name)} es un Pokémon legendario.`)
+            generateOnIncorrectMessage(`Sí, ${capitalizeFirstLetter(pokemon.name)} es un Pokémon Legendario.`)
             :
-            generateOnIncorrectMessage(`No, ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon legendario.`),
+            generateOnIncorrectMessage(`No, ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon Legendario.`),
         onIncorrectImages: [picture],
         onIncorrectAudios: [],
         answers: [
@@ -243,23 +243,23 @@ const generateIsThisAMythicalPokemonQuestion = async (maxPokedexIndex: number): 
     const picture = await getPokemonImageURL(pokemon.id);
     const trivia = await generatePokemonTrivia(pokemon.id);
     return {
-        questionText: `¿Es ${capitalizeFirstLetter(pokemon.name)} un Pokémon mítico?`,
+        questionText: `¿Es ${capitalizeFirstLetter(pokemon.name)} un Pokémon Singular?`,
         questionImages: [picture],
         questionAudios: [],
         allowsMultipleAnswers: false,
         score: 1,
         onCorrectText: isMythical
             ?
-            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} es un Pokémon mítico. ${trivia}`
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} es un Pokémon Singular. ${trivia}`
             :
-            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon mítico. ${trivia}`,
+            generateOnCorrectPrefix() + `¡Así es! ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon Singular. ${trivia}`,
         onCorrectImages: [picture],
         onCorrectAudios: [],
         onIncorrectText: isMythical
             ?
-            generateOnIncorrectMessage(`Sí, ${capitalizeFirstLetter(pokemon.name)} es un Pokémon mítico.`)
+            generateOnIncorrectMessage(`Sí, ${capitalizeFirstLetter(pokemon.name)} es un Pokémon Singular.`)
             :
-            generateOnIncorrectMessage(`No, ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon mítico.`),
+            generateOnIncorrectMessage(`No, ${capitalizeFirstLetter(pokemon.name)} no es un Pokémon Singular.`),
         onIncorrectImages: [picture],
         onIncorrectAudios: [],
         answers: [
