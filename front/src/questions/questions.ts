@@ -1252,15 +1252,11 @@ const generateHasThisPokemonHigherAttackOrSpecialAttackQuestion = async (maxPoke
     const pokemon = await fetchPokemon(pokemonIndex);
     const pokemonAttack = await getPokemonBaseAttack(pokemonIndex);
     const pokemonSpecialAttack = await getPokemonBaseSpecialAttack(pokemonIndex);
+    const options = ["Ataque", "Ataque Especial", "El mismo"];
     const correctAnswer = pokemonAttack > pokemonSpecialAttack
         ? "Ataque"
         : pokemonSpecialAttack > pokemonAttack ? "Ataque Especial" : "El mismo";
-    const incorrectAnswer = pokemonAttack > pokemonSpecialAttack
-        ? "Ataque Especial"
-        : pokemonSpecialAttack > pokemonAttack ? "Ataque" : "El mismo";
-    const thirdIncorrectAnswer = pokemonAttack > pokemonSpecialAttack
-        ? "El mismo"
-        : pokemonSpecialAttack > pokemonAttack ? "Ataque Especial" : "Ataque";
+    const [incorrectAnswer, thirdIncorrectAnswer] = options.filter(option => option !== correctAnswer);
     const answers = [
         {
             isCorrect: true,
@@ -1391,13 +1387,7 @@ const hasThisPokemonHigherSpecialDefenseOrDefenseQuestion = async (maxPokedexInd
     const correctAnswer = pokemonDefense > pokemonSpecialDefense
         ? "Defensa"
         : pokemonSpecialDefense === pokemonDefense ? "La misma" : "Defensa Especial";
-    const incorrectAnswer = pokemonDefense > pokemonSpecialDefense
-        ? "Defensa Especial"
-        : pokemonSpecialDefense === pokemonDefense ? "Defensa" : "La misma";
-    const thirdIncorrectAnswer = pokemonDefense > pokemonSpecialDefense
-        ? "La misma"
-        : pokemonSpecialDefense === pokemonDefense ? "Defensa Especial" : "Defensa";
-
+    const [incorrectAnswer, thirdIncorrectAnswer] = ["Defensa", "Defensa Especial", "La misma"].filter(option => option !== correctAnswer);
     const answers = [
         {
             isCorrect: true,
