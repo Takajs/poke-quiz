@@ -81,7 +81,17 @@ const generateWhatsTheCaptureRateOfThisPokemonQuestion = async (maxPokedexIndex:
     //Generate 3 random incorrect answers
     const incorrectAnswers = [];
     while (incorrectAnswers.length < 3) {
-        const randomCaptureRate = Math.floor(Math.random() * 256) + 1;
+        let randomCaptureRate = Math.floor(Math.random() * 256) + 1;
+
+        //Make sure the random capture ends in 0 or 5
+        if (randomCaptureRate % 5 !== 0) {
+            randomCaptureRate = Math.floor(randomCaptureRate / 10);
+            randomCaptureRate = randomCaptureRate * 10 + (Math.random() < 0.5 ? 0 : 5);
+            if(randomCaptureRate === 0 || randomCaptureRate === 5) {
+                randomCaptureRate = 3;
+            }
+        }
+
         if (randomCaptureRate !== captureRate && !incorrectAnswers.includes(randomCaptureRate)) {
             incorrectAnswers.push(randomCaptureRate);
         }
@@ -107,6 +117,7 @@ const generateWhatsTheCaptureRateOfThisPokemonQuestion = async (maxPokedexIndex:
         }
     }
 
+    shuffleArray(answers);
     return {
         questionText: `¿Cuál es el ratio de captura de ${capitalizeFirstLetter(pokemon.name)}?`,
         questionImages: [picture],
