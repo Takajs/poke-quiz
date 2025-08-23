@@ -98,7 +98,7 @@ export default function Question(
                             placeItems: 'center',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            marginTop: question.onIncorrectText.length > 400 ? '38rem' : '25rem',
+                            marginTop: question.onIncorrectText.length > 400 ? '38rem' : '55rem',
 
                         }}>
                         {
@@ -124,7 +124,8 @@ export default function Question(
                         gap: question.onCorrectImages.length <= 3 ? '200px' : '',
                         placeItems: 'center',
                         alignItems: 'center',
-                        marginTop: (question.onCorrectImages.length <= 3 && !question.onCorrectAudios?.length) || question.onCorrectText.length > 400 ? '20rem' : '',
+                        marginTop: (question.onCorrectImages.length <= 3) || question.onCorrectText.length > 400 ? `${(((question.onCorrectText.length > 200) ? (question.onCorrectText.length / 100) : (question.onCorrectText.length / 100)) * 110) + 150}px` : '',
+
 
                     }}>
                     {question.onCorrectImages.map((img, i) => {
@@ -152,7 +153,10 @@ export default function Question(
                 return <></>
             }
             return (
-                <div className="on-correct-audios">
+                <div className="on-correct-audios"
+
+
+                >
                     {question.onCorrectAudios.map((audio, i) => {
                         return <audio key={i} src={audio} controls />
                     })}
@@ -220,8 +224,7 @@ export default function Question(
                         gap: question.onIncorrectImages.length <= 3 ? '200px' : '',
                         placeItems: 'center',
                         alignItems: 'center',
-                        marginTop: (question.onIncorrectImages.length <= 3 && !question.onIncorrectAudios?.length) || question.onIncorrectText.length > 400 ? '20rem' : '',
-
+                        marginTop: (question.onIncorrectImages.length <= 3) || question.onIncorrectText.length > 400 ? `${(((question.onIncorrectText.length > 200) ? (question.onIncorrectText.length / 100) : (question.onIncorrectText.length / 100)) * 110) + 150}px` : '',
                     }}>
                     {question.onIncorrectImages.map((img, i) => {
 

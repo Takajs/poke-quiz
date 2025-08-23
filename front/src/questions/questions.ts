@@ -87,7 +87,7 @@ const generateWhatsTheCaptureRateOfThisPokemonQuestion = async (maxPokedexIndex:
         if (randomCaptureRate % 5 !== 0) {
             randomCaptureRate = Math.floor(randomCaptureRate / 10);
             randomCaptureRate = randomCaptureRate * 10 + (Math.random() < 0.5 ? 0 : 5);
-            if(randomCaptureRate === 0 || randomCaptureRate === 5) {
+            if (randomCaptureRate === 0 || randomCaptureRate === 5) {
                 randomCaptureRate = 3;
             }
         }
@@ -843,7 +843,8 @@ const generateHasThisPokemonGenderDifferenceQuestion = async (maxPokedexIndex: n
     let femaleBackSprite = pokemon.sprites.back_female;
 
     const hasGenderDifference = await hasThisPokemonGenderDifference(pokemonIndex);
-    const hasGender = hasThisPokemonGender(pokemonIndex)
+    const hasGender = await hasThisPokemonGender(pokemonIndex)
+    console.log(`The pokemon ${pokemonName} has gender? ${hasGender}`);
     const correctAnswer = hasGenderDifference ? "Sí" : "No";
     const incorrectAnswer = hasGenderDifference ? "No" : "Sí";
 
@@ -883,6 +884,7 @@ const generateHasThisPokemonGenderDifferenceQuestion = async (maxPokedexIndex: n
             !hasGenderDifference ? `¡${capitalizeFirstLetter(pokemonName)} no tiene diferencia de género!`
                 : `¡${capitalizeFirstLetter(pokemonName)} tiene diferencia de género!`
 
+
     return {
         questionText: `¿${capitalizeFirstLetter(pokemonName)} tiene diferencia de género?`,
         questionImages: [maleFrontSprite],
@@ -890,10 +892,10 @@ const generateHasThisPokemonGenderDifferenceQuestion = async (maxPokedexIndex: n
         allowsMultipleAnswers: false,
         score: 1,
         onCorrectText: onCorrectText,
-        onCorrectImages: [maleFrontSprite, maleBackSprite, '', '', femaleFrontSprite, femaleBackSprite],
+        onCorrectImages: [maleFrontSprite, maleBackSprite, '', '', !hasGender ? '' : femaleFrontSprite, !hasGender ? '' : femaleBackSprite],
         onCorrectAudios: [],
         onIncorrectText: generateOnIncorrectMessage(onIncorrectText),
-        onIncorrectImages: [maleFrontSprite, maleBackSprite, '', '', femaleFrontSprite, femaleBackSprite],
+        onIncorrectImages: [maleFrontSprite, maleBackSprite, '', '', !hasGender ? '' : femaleFrontSprite, !hasGender ? '' : femaleBackSprite],
         onIncorrectAudios: [],
         answers: answers
     }

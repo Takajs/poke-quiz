@@ -54,9 +54,15 @@ function App() {
 
         <div className="background difficulty-selector">
           <button className="difficulty-button duskball" onClick={() => handleQuizzDifficultyChange("duskball")}>Copa duskball</button>
-          <button className=" preciousball indev" onClick={() => { }}></button>
-          <button className=" diveball indev" onClick={() => { }}></button>
-          <button className=" luxuryball indev" onClick={() => { }}></button>
+          <span className="gray-filter">
+            <button className=" preciousball indev" onClick={() => { }}></button>
+          </span>
+          <span className="gray-filter">
+            <button className=" diveball indev" onClick={() => { }}></button>
+          </span>
+          <span className="gray-filter">
+            <button className=" luxuryball indev" onClick={() => { }}></button>
+          </span>
           <button className="difficulty-button masterball" onClick={() => handleQuizzDifficultyChange("masterball")}>Copa Masterball</button>
         </div>
       </div>

@@ -139,7 +139,7 @@ const hasThisPokemonGenderDifference = async (pokemonIndex: number): Promise<boo
     return pokemon.has_gender_differences;
 }
 
-const hasThisPokemonGender = async (pokemonIndex: number): boolean => {
+const hasThisPokemonGender = async (pokemonIndex: number): Promise<boolean> => {
     const pokemon = await fetchPokemonSpecies(pokemonIndex);
     return (pokemon.gender_rate !== -1)
 }
@@ -206,7 +206,10 @@ const getPokemonIndexByName = async (pokemonName: string): Promise<number> => {
 const getAllPokemonNames = async (maxDexNumber: number) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${maxDexNumber}`);
     const pokemon = await response.json();
-    return pokemon.results.map((pokemon: { name: string }) => pokemon.name);
+    let results = pokemon.results.map((pokemon: { name: string }) => pokemon.name);
+    results = results.filter((name: string) => !name.includes('Starter'));
+    return results;
+
 }
 
 const getPokemonType = async (pokemonIndex: number) => {

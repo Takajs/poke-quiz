@@ -135,7 +135,7 @@ const checkEffectiveness = async (attackingType: string, defendingTypes: string[
         return "Es súpereficaz (x4).";
     }
     //if both element in the array that are "not very effective against", return "not very effective against (x4)"
-    else if (effectivenessesResolved.every(effectiveness => effectiveness === "not very effective against")) {
+    else if (effectivenessesResolved.every(effectiveness => effectiveness === "not very effective against") && effectivenessesResolved.length > 1) {
         console.log("Final result: Not very effective against (/4)");
         return "No es muy eficaz (/4).";
     }

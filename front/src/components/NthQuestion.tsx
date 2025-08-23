@@ -27,8 +27,8 @@ export default function NthQuestion(
                     )
                 }
 
-                if(quizzMode === 'nidoball') {
-                                        return (
+                if (quizzMode === 'nidoball') {
+                    return (
                         <div className="question-images">
                             {question.questionImages.map((img, i) => {
                                 return <img className="image" key={i} src={img} alt='' />
@@ -42,6 +42,16 @@ export default function NthQuestion(
                     <div className="question-images">
                         {question.questionImages.map((img, i) => {
                             return <img className="image-in-question-hidden" key={i} src={img} alt='' />
+                        })}
+                    </div>
+                )
+            }
+            if (question.questionText.includes('A ver si te sabes la tabla de tipos')) {
+                console.log("Rendering tabla tipos")
+                return (
+                    <div className="tabla-tipos">
+                        {question?.questionImages && question.questionImages.map((img, i) => {
+                            return <img className="image" key={i} src={img} alt='' />
                         })}
                     </div>
                 )
