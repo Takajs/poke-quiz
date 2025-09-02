@@ -101,8 +101,8 @@ export default function Question(
                                     <img
                                         style={{
 
-                                            width: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '25%' : '25%',
-                                            height: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '25%' : '25%',
+                                            width: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onCorrectImages[i].includes("types") && question.onCorrectImages?.lenth > 1 ? '25%' : '105%',
+                                            height: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onCorrectImages[i].includes("types") && question.onCorrectImages?.lenth > 1 ? '25%' : '105%',
 
                                         }}
                                         className="" key={i} src={img} alt='' />
@@ -113,7 +113,7 @@ export default function Question(
             return (
                 <div className="on-correct-images"
                     style={{
-                        gridTemplateColumns: `repeat(${Math.min(question.onCorrectImages.length, 11)}, 1fr)`
+                        gridTemplateColumns: `repeat(${Math.min(question.onCorrectImages.length, 5)}, 1fr)`
                         ,
                         placeItems: 'center',
                         alignItems: 'center',
@@ -196,8 +196,8 @@ export default function Question(
                                 return (
                                     <img
                                         style={{
-                                            width: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '25%' : '25%',
-                                            height: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '25%' : '25%',
+                                            width: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") && question.onIncorrectImages?.lenth > 1 ? '25%' : '105%',
+                                            height: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") && question.onIncorrectImages?.lenth > 1 ? '25%' : '105%',
                                         }}
                                         className="" key={i} src={img} alt='' />
                                 )
@@ -208,7 +208,7 @@ export default function Question(
                 <div className="on-correct-images"
                     style={{
                         padding: `0rem`,
-                        gridTemplateColumns: `repeat(${Math.min(question.onIncorrectImages.length, 11)}, 1fr)`
+                        gridTemplateColumns: `repeat(${Math.min(question.onIncorrectImages.length, 5)}, 1fr)`
                         ,
                         gap: question.onIncorrectImages.length <= 3 ? '200px' : '',
                         placeItems: 'center',

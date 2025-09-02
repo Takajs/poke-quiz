@@ -8,21 +8,25 @@
 .image-in-question-hidden {
   width: 18vw;
   display: block;
-  filter: brightness(0.03);
+  filter: brightness(0.08);
 }
 
 @media (max-height: 933px) {
   .image-in-question-hidden {
-    width: 55vw;
+    width: 65vw;
     display: block;
-    filter: brightness(0.03);
+    filter: brightness(0.08);
   }
+}
+
+.decoration-image-in-question-hidden {
+  background-color: white;
 }
 
 .image-in-question-blur {
   width: 18vw;
   display: block;
-  filter: blur(9px);
+  filter: blur(8px);
 }
 
 @media (max-height: 933px) {
@@ -72,7 +76,7 @@ body {
     margin: 0;
     width: 100%;
     height: 100%;
-    margin-top: 1rem;
+    margin-top: 1vw;
 
 
   }
@@ -85,7 +89,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("./assets/background2.png");
+  background-image: url("./assets/background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -100,8 +104,9 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
   z-index: -1;
+  background-color: rgba(0, 0, 0, 0.5);
+
 }
 
 
@@ -111,11 +116,11 @@ body::after {
 
   display: flex;
   flex-direction: row;
-  font-size: 3vw;
+  font-size: 2.5vw;
 
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   font-family: 'MyFont', sans-serif;
   background-color: white;
   border: 3px solid black;
@@ -143,20 +148,29 @@ body::after {
   /* Dos columnas iguales */
   gap: 0px;
   /* Espacio entre columnas (opcional) */
-  font-size: 5vw;
+  font-size: 2.5vw;
 
   align-items: center;
-  justify-content: start;
-  width: 99%;
+  justify-content: center;
+  width: 100%;
   font-family: 'MyFont', sans-serif;
   background-color: white;
   border: 3px solid black;
-  padding: 0.5rem;
+  padding-right: 1rem;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 6px 5px 2px black;
 
 
+}
+
+@media (max-height: 933px) {
+  .answer-text-with-images {
+
+    font-size: 7.5vw;
+
+
+  }
 }
 
 .answer-text-with-images:hover {
@@ -170,7 +184,7 @@ body::after {
   align-items: center;
   min-width: fit-content;
   height: fit-content;
-  font-family: 'Lucida Handwriting', cursive;
+  font-family: 'MyFont', sans-serif;
   background-color: white;
   border: 3px solid black;
   border-radius: 10px;
@@ -191,22 +205,28 @@ body::after {
 
 .on-correct-images {
   display: grid;
-  column-gap: 3vw;
-  row-gap: 3vw;
+  column-gap: 4.2vw;
+  row-gap: 0vw;
   z-index: 111;
 
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+
 
 }
 
 
 
+
 .image-answer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: start;
+  width: 8vw;
+  margin: 0;
+}
+
+@media (max-height: 933px) {
+  .image-answer {
+    width: 22vw;
+  }
 }
 
 .selected {
@@ -268,7 +288,7 @@ body::after {
   top: 85.5%;
   font-size: 2rem;
   max-width: fit-content;
-  font-family: 'Lucida Handwriting', cursive;
+  font-family: 'MyFont', sans-serif;
   background-color: rgba(255, 255, 255, 0.9);
   border: 3px solid black;
   padding: 1rem;
@@ -282,7 +302,7 @@ body::after {
 .comenzar {
   font-size: 128px;
   max-width: fit-content;
-  font-family: 'Lucida Handwriting', cursive;
+  font-family: 'MyFont', sans-serif;
   background-color: transparent;
   padding: 1rem;
   border-radius: 10px;
@@ -333,11 +353,7 @@ body::after {
 }
 
 
-.question-audios {
-  margin-top: 1.4rem;
-  margin-left: 2rem;
-
-}
+.question-audios {}
 
 audio {
   margin-top: 0rem;
@@ -349,20 +365,40 @@ h1 {
   width: 90vw;
   height: 100%;
   text-align: center;
-  font-size: 5.5vw;
-  margin-bottom: 0;
+  font-size: 5vw;
   margin-top: 1rem;
   box-sizing: border-box;
   /* IMPORTANTE */
+  margin-bottom: 0;
+  animation: golden-text-glow 10s infinite;
 
 
 }
 
 @media (max-height: 933px) {
   h1 {
-    font-size: 10.5vw;
+    font-size: 14vw;
     margin-top: 1rem;
     margin-bottom: 5.5vw;
+
+  }
+}
+
+@keyframes golden-text-glow {
+  0% {
+    text-shadow: 0 0 0px red, 0 0 0px red, 0 0 0px red, 0 0 0px red;
+
+  }
+
+  50% {
+    text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red, 0 0 40px red;
+
+  }
+
+  100% {
+    text-shadow: 0 0 0px red, 0 0 0px red, 0 0 0px red, 0 0 0px red;
+
+
   }
 }
 
@@ -384,17 +420,13 @@ h2 {
 
 @media (max-height: 933px) {
   h2 {
-    font-size: 6.5vw;
-    text-shadow: 2px 1px 2px red;
+    font-size: 10vw;
+    padding-top: 1.5vw !important;
+    padding-bottom: 2vw !important;
+    padding: 4.5vw;
+    text-shadow: 2px 1px 2px rgb(0, 0, 0);
     color: white;
-    padding: 2.5vw;
     height: fit-content;
-    padding-right: 1vw;
-    width: 100vw;
-    text-align: start;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-    margin-top: 5rem;
     margin-bottom: 0;
   }
 }
@@ -425,7 +457,7 @@ h2 {
   margin-bottom: 1vw;
   width: 99%;
   height: 100%;
-  font-size: 4vw;
+  font-size: 3vw;
 
 }
 
@@ -512,9 +544,116 @@ h2 {
 
 .question-images {
   width: 22vw;
-  margin-bottom: 1.5vw;
+  margin-bottom: 2.5vw;
+  animation: await-in-battle 60s steps(240) infinite;
 }
 
+@keyframes await-in-battle {
+
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  3% {
+    transform: scale(1) rotate(2deg);
+
+
+  }
+
+  5% {
+    transform: translateX(1vw);
+  }
+
+  10% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  20% {}
+
+  22% {
+    transform: scale(1) rotate(-2deg);
+  }
+
+  25% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  27% {
+    transform: translateX(-1vw);
+
+  }
+
+  31% {
+    transform: translateX(-1vw);
+
+  }
+
+  39% {
+    transform: scale(1) rotate(-2deg);
+
+
+  }
+
+  50% {
+    transform: scale(1) rotate(0deg);
+
+  }
+
+  51% {
+    transform: translateX(1vw);
+
+  }
+
+  55% {
+    transform: scale(1) rotate(-2deg);
+
+  }
+
+  60% {
+    transform: scale(1) rotate(1deg);
+  }
+
+  63% {
+    transform: scale(1) rotate(-4deg);
+
+
+  }
+
+  65% {
+    transform: translateX(5vw);
+  }
+
+  80% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  81% {}
+
+  82% {
+    transform: scale(1.0001) translateX(-3vw);
+  }
+
+  95% {
+    transform: scale(1) rotate(1deg) translateX(-2vw);
+
+  }
+
+
+  91% {
+    transform: translateX(1vw);
+  }
+
+  95% {
+    transform: scale(1) rotate(1deg);
+
+
+  }
+
+  96% {
+    transform: scale(1) rotate(0deg);
+
+  }
+}
 
 
 .tabla-tipos {
