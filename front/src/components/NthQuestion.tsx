@@ -41,20 +41,34 @@ export default function NthQuestion(
                 return (
                     <div className="question-images">
                         {question.questionImages.map((img, i) => {
-                            return <img className="image-in-question-hidden" key={i} src={img} alt='' />
+                            return <span className="decoration-image-in-question-hidden"><img className="image-in-question-hidden" key={i} src={img} alt='' /></span>
                         })}
                     </div>
                 )
             }
             if (question.questionText.includes('A ver si te sabes la tabla de tipos')) {
-                console.log("Rendering tabla tipos")
                 return (
-                    <div className="tabla-tipos">
-                        {question?.questionImages && question.questionImages.map((img, i) => {
-                            return <img className="image" key={i} src={img} alt='' />
-                        })}
-                    </div>
-                )
+                    <div className="tabla-tipos"
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                        }}>
+                        {
+                            question.onCorrectImages.map((img, i) => {
+
+                                return (
+                                    <img
+                                        style={{
+
+                                            width: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : '25%',
+
+                                        }}
+                                        className="" key={i} src={img} alt='' />
+                                )
+                            })
+                        }</div>)
             }
             return (
                 <div className="question-images">

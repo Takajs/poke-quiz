@@ -46,7 +46,6 @@ export default function Quiz(
 
     const addQuestionToQuiz = async () => {
         if (hasStarted && currentQuestionIndex === questions.length - 1) {
-            console.log("Adding question to quiz: " + quizzMode)
             if (quizzMode === "loveball") {
                 const promise = addLoveballLevelQuestionToQuizz(questions).then(newQuestions => {
                     setQuestions(newQuestions)

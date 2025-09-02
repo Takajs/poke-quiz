@@ -1,5 +1,4 @@
 import Quiz from './components/Quiz'
-import './App.css'
 import React, { useState, useEffect } from 'react'
 import { generateQuizz } from '../src/questions/questions'
 import { QUESTION } from '../src/components/types'

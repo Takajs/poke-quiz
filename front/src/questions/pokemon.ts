@@ -77,7 +77,6 @@ const getTypeImageURL = async (typeName: string): Promise<string> => {
     const type = await fetch(`https://pokeapi.co/api/v2/type/${typeName}`);
     const typeData = await type.json();
     const typeIndex = typeData.id;
-    console.log(`Type ${typeName} has index ${typeIndex}`);
     return `https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/types/generation-ix/scarlet-violet/${typeIndex}.png`;
 }
 

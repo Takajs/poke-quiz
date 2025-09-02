@@ -281,7 +281,6 @@ const generateIsThisAMythicalPokemonQuestion = async (maxPokedexIndex: number): 
 
 const generateHonorballLevelQuizz = async (): Promise<QUESTION[]> => {
     const questions: QUESTION[] = [];
-    console.log(`Generating Honorball level question`);
     const questionType = Math.floor(Math.random() * 3);
     switch (questionType) {
         case 0:
@@ -315,7 +314,6 @@ const generateWhosThatPokemonQuestion = async (maxPokedexIndex: number): Promise
     const picture = await getPokemonImageURL(pokemonNamesAndIndexes[correctAnswerIndex].index);
 
     const trivia = await generatePokemonTrivia(pokemonNamesAndIndexes[correctAnswerIndex].index);
-    console.log(`Trivia for ${pokemonNamesAndIndexes[correctAnswerIndex].index} ${pokemonNamesAndIndexes[correctAnswerIndex].name}: ${trivia}`);
 
     return {
         questionText: '¿Cuál es este Pokémon?',
@@ -530,78 +528,16 @@ const whatDoesThisAbilityDoQuestion = async (maxPokedexIndex: number): Promise<Q
     /////
 
     const onCorrectImages = [];
-    console.log(`GENERATING.....`);
     const preProcessedPokemonNames: string[] = await getNamesOfPokemonThatCanHaveAbility(correctAnswer, 1025);
     //Remove any "totem" pokemon from the list
     const pokemonName = preProcessedPokemonNames.filter(name => !name.includes("-female") && !name.includes("pikachu-") && !name.includes("totem") && !name.includes("-breed") && !name.includes("-starter") && !name.includes("-dada"));
-    console.log(`GENERATED: Pokemon with ability ${correctAnswer}: ${pokemonName}`);
 
     for (let i = 0; i < pokemonName.length; i++) {
 
 
-        //if correctAnswer contains "alola"
-        /*
-                if (pokemonName[i].toLowerCase().includes("alola")) {
-                    const nameWithoutAlola = pokemonName[i].replace("-alola", "").trim();
-                    console.log(`Alolan Pokemon: ${nameWithoutAlola}`);
-                    onCorrectImages.push(getAlolanPokemonImageURL(await getPokemonIndexByName(nameWithoutAlola)));
-                }
-                else if (pokemonName[i].toLowerCase().includes("galar")) {
-                    const nameWithoutGalar = pokemonName[i].replace("-galar", "").trim();
-                    console.log(`Galarian Pokemon: ${nameWithoutGalar}`);
-                    onCorrectImages.push(getGalarianPokemonImageURL(await getPokemonIndexByName(nameWithoutGalar)));
-                }
-                else if (pokemonName[i].toLowerCase().includes("paldea")) {
-        
-                }
-        
-        
-                else if (pokemonName[i].toLowerCase().includes("hisui")) {
-                    const nameWithoutHisui = pokemonName[i].replace("-hisui", "").trim();
-                    console.log(`Hisuian Pokemon: ${nameWithoutHisui}`);
-                    onCorrectImages.push(getHisuianPokemonImageURL(await getPokemonIndexByName(nameWithoutHisui)));
-                }
-                else if (pokemonName[i].toLowerCase().includes("gmax")) {
-                    const nameWithoutGmax = pokemonName[i].replace("-gmax", "").trim();
-                    console.log(`Gigantamax Pokemon: ${nameWithoutGmax}`);
-                    onCorrectImages.push(getGigantamaxPokemonImageURL(await getPokemonIndexByName(nameWithoutGmax)));
-                }
-                else if (pokemonName[i].toLowerCase().includes("mega")) {
-                    if (!pokemonName[i].toLowerCase().includes("-x") && !pokemonName[i].toLowerCase().includes("-y")) {
-                        const nameWithoutMega = pokemonName[i].replace("-mega", "").trim();
-                        console.log(`Mega Pokemon: ${nameWithoutMega}`);
-                        onCorrectImages.push(getMegaPokemonImageURL(await getPokemonIndexByName(nameWithoutMega)));
-                    }
-                    if (pokemonName[i].toLowerCase().includes("-x")) {
-                        const nameWithoutMegaX = pokemonName[i].replace("-mega-x", "").trim();
-                        console.log(`Mega X Pokemon: ${nameWithoutMegaX}`);
-                        onCorrectImages.push(getMegaXPokemonImageURL(await getPokemonIndexByName(nameWithoutMegaX)));
-                    }
-                    if (pokemonName[i].toLowerCase().includes("-y")) {
-                        const nameWithoutMegaY = pokemonName[i].replace("-mega-y", "").trim();
-                        console.log(`Mega Y Pokemon: ${nameWithoutMegaY}`);
-                        onCorrectImages.push(getMegaYPokemonImageURL(await getPokemonIndexByName(nameWithoutMegaY)));
-                    }
-                }
-                else if (pokemonName[i].toLowerCase().includes("terastal")) {
-                    const nameWithoutTerastal = pokemonName[i].replace("-terastal", "").trim();
-                    console.log(`Terastal Pokemon: ${nameWithoutTerastal}`);
-                    onCorrectImages.push(getTerastalPokemonImageURL(await getPokemonIndexByName(nameWithoutTerastal)));
-                }
-                else if (pokemonName[i].toLowerCase().includes("segment")) {
-                    //Remove any other ocurrences of "segment" elements in the array
-        
-                    onCorrectImages.push("https://archives.bulbagarden.net/media/upload/6/65/0982Dudunsparce.png");
-                }
-                else if (pokemonName[i].toLowerCase().includes("maushold")) {
-        
-                    onCorrectImages.push("https://archives.bulbagarden.net/media/upload/f/f4/0925Maushold.png");
-                }*/
 
         const imageURL = await getPokemonImageURL(await getPokemonIndexByName(pokemonName[i]))
-        console.log(`DECIDED: ${imageURL}`);
         onCorrectImages.push(imageURL);
-        console.log(`Pokemon with ability ${correctAnswer}: ${pokemonName[i]} pushed image URL ${onCorrectImages[i]}`);
     }
 
     const onCorrectText = pokemonName.length === 1
@@ -752,7 +688,7 @@ const whatsTheAccuracyOfThisMoveQuestion = async (maxPokedexIndex: number): Prom
         ?
         generateOnCorrectPrefix() + `¡El movimiento ${capitalizeFirstLetter(moveName)} nunca falla!`
         :
-        generateOnCorrectPrefix() + `La precisión de ${capitalizeFirstLetter(moveName)} es del ${correctAnswer}%.`;
+        generateOnCorrectPrefix() + `La precisión de ${capitalizeFirstLetter(moveName)} es ${correctAnswer}.`;
 
     const beautifiedStringAnswers = answers.map(answer => beautifyAccuracy(answer.answerText));
     const beautifiedAnswers = answers.map((answer, i) => {
@@ -771,7 +707,7 @@ const whatsTheAccuracyOfThisMoveQuestion = async (maxPokedexIndex: number): Prom
         ?
         `El movimiento ${capitalizeFirstLetter(moveName)} nunca falla.`
         :
-        `La precisión de ${capitalizeFirstLetter(moveName)} es del ${correctBeautifiedAnswer}.`;
+        `La precisión de ${capitalizeFirstLetter(moveName)} es ${correctBeautifiedAnswer}.`;
 
 
 
@@ -844,7 +780,6 @@ const generateHasThisPokemonGenderDifferenceQuestion = async (maxPokedexIndex: n
 
     const hasGenderDifference = await hasThisPokemonGenderDifference(pokemonIndex);
     const hasGender = await hasThisPokemonGender(pokemonIndex)
-    console.log(`The pokemon ${pokemonName} has gender? ${hasGender}`);
     const correctAnswer = hasGenderDifference ? "Sí" : "No";
     const incorrectAnswer = hasGenderDifference ? "No" : "Sí";
 
@@ -892,10 +827,11 @@ const generateHasThisPokemonGenderDifferenceQuestion = async (maxPokedexIndex: n
         allowsMultipleAnswers: false,
         score: 1,
         onCorrectText: onCorrectText,
-        onCorrectImages: [maleFrontSprite, maleBackSprite, '', '', !hasGender ? '' : femaleFrontSprite, !hasGender ? '' : femaleBackSprite],
+        onCorrectImages: !hasGender ? ['', maleFrontSprite, maleBackSprite, ''] : [maleFrontSprite, maleBackSprite, femaleFrontSprite, femaleBackSprite],
+
         onCorrectAudios: [],
         onIncorrectText: generateOnIncorrectMessage(onIncorrectText),
-        onIncorrectImages: [maleFrontSprite, maleBackSprite, '', '', !hasGender ? '' : femaleFrontSprite, !hasGender ? '' : femaleBackSprite],
+        onIncorrectImages: !hasGender ? ['', maleFrontSprite, maleBackSprite, ''] : [maleFrontSprite, maleBackSprite, femaleFrontSprite, femaleBackSprite],
         onIncorrectAudios: [],
         answers: answers
     }
@@ -1146,7 +1082,6 @@ const whatsTheMultiplierDamageOfMoveTypeAgainsTypeCombination = async (): Promis
     const randomType1 = types[Math.floor(Math.random() * types.length)];
     const randomType2 = types[Math.floor(Math.random() * types.length)];
     const moveType = types[Math.floor(Math.random() * types.length)];
-    console.log(`The attacking move type is ${moveType}`);
 
     //if randomType1 and randomType2 are the same, we only need to check the effectiveness of the move against one of them
     const defenseTypes: string[] = [];
@@ -1157,10 +1092,8 @@ const whatsTheMultiplierDamageOfMoveTypeAgainsTypeCombination = async (): Promis
         defenseTypes.push(randomType1);
         defenseTypes.push(randomType2);
     }
-    console.log(`The defense types are ${defenseTypes}`);
 
     let multiplier = await checkEffectiveness(moveType, defenseTypes);
-    console.log(`The multiplier is ${multiplier}`);
     const possibleAnswers = ["Hace daño neutro.", "No le afecta.", "Es súpereficaz (x4).", "No es muy eficaz (/4).", "Es súpereficaz (x2).", "No es muy eficaz (/2)."];
 
     const incorrectAnswers = possibleAnswers.filter(answer => answer !== multiplier);
@@ -1188,17 +1121,14 @@ const whatsTheMultiplierDamageOfMoveTypeAgainsTypeCombination = async (): Promis
     }
 
     shuffleArray(answers);
-    console.log(`The possible answers are ${answers.map(answer => answer.answerText)}`);
 
 
 
     //translate the defense types to spanish
     const defenseTypesString = defenseTypes.map(type => translateTypeNameToSpanish(type)).join(" y ");
-    console.log(`The defense types string is ${defenseTypesString}`);
 
     //translate the move type to spanish
     const moveTypeString = translateTypeNameToSpanish(moveType);
-    console.log(`The move type string is ${moveTypeString}`);
 
     //defenseTypes.map(async type => await getTypeStprite(type))
     const defenseTypesImages = await Promise.all(defenseTypes.map(async type => await getTypeStprite(type)));
@@ -1556,9 +1486,7 @@ const generateInWhichPalParkAreaCanYouFindThisPokemonQuestion = async (maxPokede
     const randomIndex = Math.floor(Math.random() * maxPokedexIndex) + 1;
     const pokemonName = await fetchPokemonName(randomIndex);
     const pokemon = await getPokemonSpecies(randomIndex);
-    console.log(`The pokemon name is ${pokemonName}, with index ${randomIndex}`);
     const palParkAreas = pokemon.pal_park_encounters[0]?.area.name ? pokemon.pal_park_encounters[0].area.name : null;
-    console.log(`The pal park area of ${pokemonName} is ${palParkAreas}`);
     const correctAnswer = palParkAreas.length > 0 ? palParkAreas : allPalParkAreas[Math.floor(Math.random() * allPalParkAreas.length)];
     const correctAnswerIndex = allPalParkAreas.indexOf(correctAnswer);
     const incorrectAnswers = allPalParkAreas.filter(area => area !== correctAnswer);
@@ -1585,8 +1513,8 @@ const generateInWhichPalParkAreaCanYouFindThisPokemonQuestion = async (maxPokede
 
     shuffleArray(answers);
 
-    const onCorrectText = generateOnCorrectPrefix() + `El Pokémon ${capitalizeFirstLetter(pokemonName)} se puede encontrar en la Zona ${translatedPalParkAreas[correctAnswerIndex]}.`;
-    const onIncorrectText = `El Pokémon ${capitalizeFirstLetter(pokemonName)} se puede encontrar en la Zona ${translatedPalParkAreas[correctAnswerIndex]}.`;
+    const onCorrectText = generateOnCorrectPrefix() + `El Pokémon ${capitalizeFirstLetter(pokemonName)} se puede encontrar en la ${translatedPalParkAreas[correctAnswerIndex]}`;
+    const onIncorrectText = `El Pokémon ${capitalizeFirstLetter(pokemonName)} se puede encontrar en la ${translatedPalParkAreas[correctAnswerIndex]}`;
     return {
         questionText: `¿En qué zona del Parque Compi se puede encontrar a ${capitalizeFirstLetter(pokemonName)}?`,
         questionImages: [await getPokemonImageURL(randomIndex)],
@@ -1749,7 +1677,6 @@ const generateWhatTypeIsThisPokemonQuestion = async (maxPokedexIndex: number): P
                     const random = Math.random();
                     if (i < allTypesNames1.length - 1 && random > 0.4) {
                         i++;
-                        console.log(`The incorrect answer pushed is ${candidateWrongAnswer}`);
                         incorrectAnswers.push(candidateWrongAnswer);
                     }
                 }
@@ -1774,7 +1701,6 @@ const generateWhatTypeIsThisPokemonQuestion = async (maxPokedexIndex: number): P
 
     //push the incorrect answers
     for (let i = 0; i < 3; i++) {
-        console.log(`The incorrect answer is ${incorrectAnswers[i]}`);
         const types = incorrectAnswers[i].split(" y ");
         const sprites = await Promise.all(types.map(async type => await getTypeStprite(type)));
         answers.push({
@@ -1873,47 +1799,36 @@ const generateAllQuestions = async (maxPokedexIndex: number, numberOfQuestions: 
         switch (randomQuestionIndex) {
 
             case 0:
-                console.log("0 Generating WhosThatPokemonQuestion");
                 questions.push(await generateWhosThatPokemonQuestion(maxPokedexIndex));
                 break;
             case 1:
-                console.log("1 Generating WhoThisCryBelongsToQuestion");
                 questions.push(await generateWhoThisCryBelongsToQuestion(maxPokedexIndex));
                 break;
             case 2:
-                console.log("2 Generating WhichOfTheseMovesDoesPokemonKnowQuestion");
                 questions.push(await generateWhichOfTheseMovesDoesPokemonKnowQuestion(maxPokedexIndex));
                 break;
             case 3:
-                console.log("3 Generating WhichOfThesePokemonCanHaveAbilityQuestion");
                 questions.push(await generateWhichOfThesePokemonCanHaveAbilityQuestion(maxPokedexIndex));
                 break;
             case 4:
-                console.log("4 Generating WhatDoesThisAbilityDoQuestion");
                 questions.push(await whatDoesThisAbilityDoQuestion(maxPokedexIndex));
                 break;
             case 5:
-                console.log("5 Generating WhatsThePowerOfThisMoveQuestion");
                 questions.push(await whatsThePowerOfThisMoveQuestion(maxPokedexIndex));
                 break;
             case 6:
-                console.log("6 Generating WhatsTheAccuracyOfThisMoveQuestion");
                 questions.push(await whatsTheAccuracyOfThisMoveQuestion(maxPokedexIndex));
                 break;
             case 7:
-                console.log("7 Generating SelectTheCorrectCryForThisPokemonQuestion");
                 questions.push(await generateSelectTheCorrectCryForThisPokemonQuestion(maxPokedexIndex));
                 break;
             case 8:
-                console.log("8 Generating WhatIsTheTargetOfThisMoveQuestion");
                 questions.push(await generateWhatIsTheTargetOfThisMoveQuestion(maxPokedexIndex));
                 break;
             case 9:
-                console.log("9 Generating WhatsTheMultiplierDamageOfMoveTypeAgainsTypeCombination");
                 questions.push(await whatsTheMultiplierDamageOfMoveTypeAgainsTypeCombination(maxPokedexIndex));
                 break;
             case 10:
-                console.log("10 Generating WhatTypeIsThisPokemonQuestion");
                 questions.push(await generateWhatTypeIsThisPokemonQuestion(maxPokedexIndex));
                 break;
             default:
@@ -2049,7 +1964,6 @@ const generateMasterballLevelQuizz = async () => {
     //all modes
     const questions = [];
     const mode = Math.floor(Math.random() * 16);
-    console.log(`The mode for the masterball level quizz is ${mode}`);
     switch (mode) {
         case 0:
             questions.push(...await generateNidoballLevelQuizz());
@@ -2106,7 +2020,6 @@ const generateMasterballLevelQuizz = async () => {
             questions.push(...await generateNidoballLevelQuizz());
             break;
     }
-    console.log(`The questions for the masterball level quizz are: ${JSON.stringify(questions)}`);
     return questions;
 }
 

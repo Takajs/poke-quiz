@@ -26,7 +26,6 @@ const getAllPokemonNamesThatCanHaveAbility = async (abilityName: string, maxDexN
     const pokemonNames = [];
     for (let i = 0; i < pokemon.length; i++) {
         if (pokemon[i].pokemon.url.split('/')[6] <= maxDexNumber || pokemon[i].pokemon.url.split('/')[6] >= 10001) {
-            console.log(`pushing Pokemon with ability ${abilityName}: ${pokemon[i].pokemon.name}`);
             pokemonNames.push(pokemon[i].pokemon.name);
         }
     }
@@ -53,7 +52,6 @@ const getMaxNumberOfPokemonThatCanHaveAbility = async (abilityName: string, maxD
 }
 
 const getNamesOfPokemonThatCanHaveAbility = async (abilityName: string, maxDexNumber: number) :Promise<string[]> => {
-    console.log(`Fetching all Pokémon with ability: ${abilityName} and max dex number: ${maxDexNumber}`);
     const response = await fetch(`https://pokeapi.co/api/v2/ability/${abilityName}`);
     const ability = await response.json();
     const pokemon = ability.pokemon;

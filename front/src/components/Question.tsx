@@ -41,16 +41,12 @@ export default function Question(
         let numberOfCorrectAnswers = 0;
         for (const answer of answers) {
             if (!answer.isCorrect) {
-                console.log("Incorrect answer selected:", answer);
                 correctness = false;
             } else {
-                console.log("Correct answer selected:", answer);
                 numberOfCorrectAnswers++;
             }
         }
 
-        console.log("Number of total expected correct answers:", expectedNumberOfCorrectAnswers);
-        console.log("Total selected answers:", numberOfCorrectAnswers);
         correctness = expectedNumberOfCorrectAnswers === numberOfCorrectAnswers && correctness;
 
         setIsCorrect(correctness);
@@ -88,18 +84,15 @@ export default function Question(
             const str = question.questionText;
 
 
-            if (question.questionText.includes("A ver si te sabes la tabla de tipos")) {
+            if (question.questionText.includes("A ver si te sabes la tabla de tipos") || question.questionText.includes('tipo es el movimiento')) {
                 return (
-                    <div className="on-correct-images"
+                    <div className=""
                         style={{
-                            padding: `${question.onIncorrectImages.length === 1 ? '0 rem' : '0rem'}`,
-                            gridTemplateColumns: `repeat(${Math.min(question.onIncorrectImages.length, 15)}, 1fr)`
-                            ,
-                            placeItems: 'center',
-                            flexDirection: 'column',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-around',
                             alignItems: 'center',
-                            marginTop: question.onIncorrectText.length > 400 ? '38rem' : '55rem',
-
+                            marginTop: '5vw'
                         }}>
                         {
                             question.onCorrectImages.map((img, i) => {
@@ -108,9 +101,11 @@ export default function Question(
                                     <img
                                         style={{
 
-                                            width: question.onCorrectImages[i].includes("crossed-swords") ? '50%' : '100%',
+                                            width: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '75%' : '25%',
+                                            height: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '75%' : '25%',
+
                                         }}
-                                        className="image-on-correct" key={i} src={img} alt='' />
+                                        className="" key={i} src={img} alt='' />
                                 )
                             })
                         }</div>)
@@ -118,13 +113,10 @@ export default function Question(
             return (
                 <div className="on-correct-images"
                     style={{
-                        padding: `${question.onCorrectImages.length === 1 ? '0 rem' : '0rem'}`,
                         gridTemplateColumns: `repeat(${Math.min(question.onCorrectImages.length, 11)}, 1fr)`
                         ,
-                        gap: question.onCorrectImages.length <= 3 ? '200px' : '',
                         placeItems: 'center',
                         alignItems: 'center',
-                        marginTop: (question.onCorrectImages.length <= 3) || question.onCorrectText.length > 400 ? `${(((question.onCorrectText.length > 200) ? (question.onCorrectText.length / 100) : (question.onCorrectText.length / 100)) * 110) + 150}px` : '',
 
 
                     }}>
@@ -142,7 +134,7 @@ export default function Question(
                                                 : `${String((200 / question.onIncorrectImages.length) + 200) + '%'
                                                 }`,
                                 }}
-                                className="image-on-correct" key={i} src={img} alt='' />
+                                className="image" key={i} src={img} alt='' />
                         )
                     })}
                 </div>
@@ -178,7 +170,7 @@ export default function Question(
     const renderOnIncorrect = () => {
         const renderOnIncorrectText = () => {
             return (
-                <h2 className="on-incorrect-text">{question.onIncorrectText}</h2>
+                <h2 className="">{question.onIncorrectText}</h2>
             )
         }
         const renderOnIncorrectImages = () => {
@@ -187,44 +179,40 @@ export default function Question(
             }
             const str = question.questionText;
 
-            if (question.questionText.includes("A ver si te sabes la tabla de tipos")) {
+            if (question.questionText.includes("A ver si te sabes la tabla de tipos") || question.questionText.includes('tipo es el movimiento')) {
                 return (
-                    <div className="on-correct-images"
+                    <div className=""
                         style={{
-                            padding: `${question.onIncorrectImages.length === 1 ? '0 rem' : '0rem'}`,
-                            gridTemplateColumns: `repeat(${Math.min(question.onIncorrectImages.length, 15)}, 1fr)`
-                            ,
-                            placeItems: 'center',
-                            flexDirection: 'column',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-around',
                             alignItems: 'center',
-                            marginTop: question.onIncorrectText.length > 400 ? '38rem' : '25rem',
+                            marginTop: '4rem'
 
                         }}>
+                        {
+                            question.onIncorrectImages.map((img, i) => {
 
-
-                        {question.onIncorrectImages.map((img, i) => {
-
-                            return (
-                                <img
-                                    style={{
-                                        width: question.onIncorrectImages[i].includes("crossed-swords") ? '50%' : '100%',
-                                    }}
-                                    className="image-on-correct" key={i} src={img} alt='' />
-                            )
-                        })}
-                    </div>
-                )
+                                return (
+                                    <img
+                                        style={{
+                                            width: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '75%' : '25%',
+                                            height: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") ? '75%' : '25%',
+                                        }}
+                                        className="" key={i} src={img} alt='' />
+                                )
+                            })
+                        }</div>)
             }
             return (
                 <div className="on-correct-images"
                     style={{
-                        padding: `${question.onIncorrectImages.length === 1 ? '0 rem' : '0rem'}`,
+                        padding: `0rem`,
                         gridTemplateColumns: `repeat(${Math.min(question.onIncorrectImages.length, 11)}, 1fr)`
                         ,
                         gap: question.onIncorrectImages.length <= 3 ? '200px' : '',
                         placeItems: 'center',
                         alignItems: 'center',
-                        marginTop: (question.onIncorrectImages.length <= 3) || question.onIncorrectText.length > 400 ? `${(((question.onIncorrectText.length > 200) ? (question.onIncorrectText.length / 100) : (question.onIncorrectText.length / 100)) * 110) + 150}px` : '',
                     }}>
                     {question.onIncorrectImages.map((img, i) => {
 
@@ -240,7 +228,7 @@ export default function Question(
                                                 : `${String((200 / question.onIncorrectImages.length) + 200) + '%'
                                                 }`,
                                 }}
-                                className="image-on-correct" key={i} src={img} alt='' />
+                                className="image" key={i} src={img} alt='' />
                         )
                     })}
                 </div>
