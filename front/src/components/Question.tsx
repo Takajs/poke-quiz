@@ -84,7 +84,7 @@ export default function Question(
             const str = question.questionText;
 
 
-            if (question.questionText.includes("A ver si te sabes la tabla de tipos") || question.questionText.includes('tipo es el movimiento')) {
+            if (question.questionText.includes("la tabla de tipos") || question.questionText.includes('tipo es el movimiento')) {
                 return (
                     <div className=""
                         style={{
@@ -101,8 +101,8 @@ export default function Question(
                                     <img
                                         style={{
 
-                                            width: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onCorrectImages[i].includes("types") && question.onCorrectImages?.lenth > 1 ? '25%' : '105%',
-                                            height: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onCorrectImages[i].includes("types") && question.onCorrectImages?.lenth > 1 ? '25%' : '105%',
+                                            width: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onCorrectImages[i].includes("types") && question.onCorrectImages?.length > 1 ? '25%' : '105%',
+                                            height: question.onCorrectImages[i].includes("crossed-swords") ? '10%' : question.onCorrectImages[i].includes("types") && question.onCorrectImages?.length > 1 ? '25%' : '105%',
 
                                         }}
                                         className="" key={i} src={img} alt='' />
@@ -196,8 +196,8 @@ export default function Question(
                                 return (
                                     <img
                                         style={{
-                                            width: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") && question.onIncorrectImages?.lenth > 1 ? '25%' : '105%',
-                                            height: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") && question.onIncorrectImages?.lenth > 1 ? '25%' : '105%',
+                                            width: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") && question.onIncorrectImages?.length > 1 ? '25%' : '105%',
+                                            height: question.onIncorrectImages[i].includes("crossed-swords") ? '10%' : question.onIncorrectImages[i].includes("types") && question.onIncorrectImages?.length > 1 ? '25%' : '105%',
                                         }}
                                         className="" key={i} src={img} alt='' />
                                 )
