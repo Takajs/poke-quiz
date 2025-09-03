@@ -113,7 +113,7 @@ export default function Question(
             return (
                 <div className="on-correct-images"
                     style={{
-                        gridTemplateColumns: `repeat(${Math.min(question.onCorrectImages.length, 5)}, 1fr)`
+                        gridTemplateColumns: `repeat(${Math.min(question.onCorrectImages.length, 4)}, 1fr)`
                         ,
                         placeItems: 'center',
                         alignItems: 'center',
@@ -134,7 +134,8 @@ export default function Question(
                                                 : `${String((200 / question.onIncorrectImages.length) + 200) + '%'
                                                 }`,
                                 }}
-                                className="image" key={i} src={img} alt='' />
+                                className="image"
+                                key={i} src={img} alt=''></img>
                         )
                     })}
                 </div>
@@ -207,10 +208,8 @@ export default function Question(
             return (
                 <div className="on-correct-images"
                     style={{
-                        padding: `0rem`,
-                        gridTemplateColumns: `repeat(${Math.min(question.onIncorrectImages.length, 5)}, 1fr)`
+                        gridTemplateColumns: `repeat(${Math.min(question.onIncorrectImages.length, 4)}, 1fr)`
                         ,
-                        gap: question.onIncorrectImages.length <= 3 ? '200px' : '',
                         placeItems: 'center',
                         alignItems: 'center',
                     }}>

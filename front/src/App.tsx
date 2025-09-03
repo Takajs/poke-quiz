@@ -64,6 +64,8 @@ function App() {
           </span>
           <button className="difficulty-button masterball" onClick={() => handleQuizzDifficultyChange("masterball")}>Copa Masterball</button>
         </div>
+      <div className="pikachu" ></div>
+
       </div>
     )
   }
@@ -79,6 +81,8 @@ function App() {
         setQuestions={setQuizz}
         quizzMode={quizzMode}
       />
+      <div className="pikachu" ></div>
+
     </div>
   )
 }

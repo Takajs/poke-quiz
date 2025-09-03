@@ -9,7 +9,7 @@ export default function Answers(
 
     const renderAnswers = () => {
 
-        const renderAnswerText = (answer: ANSWER) => {
+        const renderAnswerText = (answer: ANSWER, answerIndex: number) => {
             const [isSelected, setIsSelected] = React.useState(false)
             const [styleName, setStyleName] = React.useState('answer-text')
 
@@ -19,17 +19,52 @@ export default function Answers(
             };
 
 
+            let bgColor = 'white';
+            let color = 'black';
+            if (answerIndex === 0) {
+                bgColor = 'rgba(154,154,154,0.99)';
+
+                color = 'white';
+
+            }
+            else if (answerIndex === 1) {
+
+                bgColor = 'rgba(127,127,127,0.99)';
+
+                color = 'white';
+            }
+            else if (answerIndex === 2) {
+
+
+
+                bgColor = 'rgba(104,104,104,0.95)';
+                color = 'white';
+            }
+            else if (answerIndex === 3) {
+
+                bgColor = 'rgba(100,100,100,0.95)';
+                color = 'white';
+
+            }
+
+
             if (answer.answerText.length === 0) {
                 return <></>
             }
             if (answer.answerImages?.length < 1) {
+
                 return (
 
                     <button className="answer-text" style={{
-                        backgroundColor: isSelected ? 'green' : 'white',
+                        backgroundColor: isSelected
+                            ? 'green'
+                            : bgColor,
+                        color: color,
                     }} onClick={handleClick} >
                         {renderAnswerImages(answer)}
-                        <div>
+                        <div
+
+                        >
                             {answer.answerText}
                         </div>
                     </ button>
@@ -37,11 +72,16 @@ export default function Answers(
             }
             else {
                 return (
-                    <button className="answer-text-with-images" style={{
-                        backgroundColor: isSelected ? 'green' : 'white',
-                    }} onClick={handleClick} >
+                    <button
+
+                        className="answer-text-with-images" style={{
+                            backgroundColor: isSelected
+                                ? 'green'
+                                : bgColor,
+                            color: color,
+                        }} onClick={handleClick} >
                         {renderAnswerImages(answer)}
-                        <div>
+                        <div >
                             {answer.answerText}
                         </div>
                     </ button>)
@@ -98,8 +138,10 @@ export default function Answers(
             <div className="answers">
                 {question.answers && question.answers.map((answer, i) => {
                     return (
-                        <div key={i} className="answer" onClick={() => { handleClickOnAnswer(answer) }}>
-                            {renderAnswerText(answer)}
+                        <div
+
+                            key={i} className="answer" onClick={() => { handleClickOnAnswer(answer) }}>
+                            {renderAnswerText(answer, i)}
                             {renderAnswerAudios(answer)}
                         </div>
                     )

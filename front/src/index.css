@@ -40,13 +40,16 @@
 .image {
   width: 18vw;
   display: block;
+  max-width: 18vw;
 }
+
 
 @media (max-height: 933px) {
   .image {
     width: 40vw;
     display: block;
     margin: 0;
+    max-width: 100vw;
 
 
 
@@ -77,8 +80,6 @@ body {
     width: 100%;
     height: 100%;
     margin-top: 1vw;
-
-
   }
 }
 
@@ -95,6 +96,7 @@ body::before {
   background-repeat: no-repeat;
   background-attachment: fixed;
   z-index: -2;
+
 }
 
 body::after {
@@ -113,7 +115,6 @@ body::after {
 
 
 .answer-text {
-
   display: flex;
   flex-direction: row;
   font-size: 2.5vw;
@@ -151,12 +152,14 @@ body::after {
   font-size: 2.5vw;
 
   align-items: center;
-  justify-content: center;
+  justify-items: center;
+
+
+
   width: 100%;
   font-family: 'MyFont', sans-serif;
   background-color: white;
   border: 3px solid black;
-  padding-right: 1rem;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 6px 5px 2px black;
@@ -190,7 +193,14 @@ body::after {
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 6px 5px 2px black;
-  font-size: 1rem;
+  font-size: 1vw;
+}
+
+@media (max-height: 933px) {
+  .add-audio-button {
+    font-size: 5vw;
+
+  }
 }
 
 .add-audio-button:hover {
@@ -205,14 +215,36 @@ body::after {
 
 .on-correct-images {
   display: grid;
-  column-gap: 4.2vw;
+  column-gap: 5.2vw;
   row-gap: 0vw;
   z-index: 111;
+  width: 100%;
+  max-width: 100%;
 
-  margin-left: 2rem;
-  margin-right: 2rem;
+
+  /* Limita la altura a la de la pantalla */
+  /* Habilita el scroll vertical */
+  overflow-y: auto;
+  overflow-x: auto;
+  box-sizing: border-box;
+  /* Deslimita el ancho a la pantalla */
+
+  margin-top: 0;
 
 
+}
+
+@media (max-height: 933px) {
+  .on-correct-images {
+    max-height: calc(53vh - 1rem);
+
+    width: 100%;
+    max-width: 100%;
+    padding: 9vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+
+  }
 }
 
 
@@ -347,6 +379,7 @@ body::after {
   justify-content: center;
   align-items: center;
   z-index: 111;
+  margin: 0;
 
 
 
@@ -370,14 +403,14 @@ h1 {
   box-sizing: border-box;
   /* IMPORTANTE */
   margin-bottom: 0;
-  animation: golden-text-glow 10s infinite;
+  animation: golden-text-glow 15s infinite;
 
 
 }
 
 @media (max-height: 933px) {
   h1 {
-    font-size: 14vw;
+    font-size: 12.5vw;
     margin-top: 1rem;
     margin-bottom: 5.5vw;
 
@@ -544,116 +577,15 @@ h2 {
 
 .question-images {
   width: 22vw;
-  margin-bottom: 2.5vw;
-  animation: await-in-battle 60s steps(240) infinite;
 }
 
-@keyframes await-in-battle {
-
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
-
-  3% {
-    transform: scale(1) rotate(2deg);
-
-
-  }
-
-  5% {
-    transform: translateX(1vw);
-  }
-
-  10% {
-    transform: scale(1) rotate(0deg);
-  }
-
-  20% {}
-
-  22% {
-    transform: scale(1) rotate(-2deg);
-  }
-
-  25% {
-    transform: scale(1) rotate(0deg);
-  }
-
-  27% {
-    transform: translateX(-1vw);
-
-  }
-
-  31% {
-    transform: translateX(-1vw);
-
-  }
-
-  39% {
-    transform: scale(1) rotate(-2deg);
-
-
-  }
-
-  50% {
-    transform: scale(1) rotate(0deg);
-
-  }
-
-  51% {
-    transform: translateX(1vw);
-
-  }
-
-  55% {
-    transform: scale(1) rotate(-2deg);
-
-  }
-
-  60% {
-    transform: scale(1) rotate(1deg);
-  }
-
-  63% {
-    transform: scale(1) rotate(-4deg);
-
-
-  }
-
-  65% {
-    transform: translateX(5vw);
-  }
-
-  80% {
-    transform: scale(1) rotate(0deg);
-  }
-
-  81% {}
-
-  82% {
-    transform: scale(1.0001) translateX(-3vw);
-  }
-
-  95% {
-    transform: scale(1) rotate(1deg) translateX(-2vw);
-
-  }
-
-
-  91% {
-    transform: translateX(1vw);
-  }
-
-  95% {
-    transform: scale(1) rotate(1deg);
-
-
-  }
-
-  96% {
-    transform: scale(1) rotate(0deg);
+@media (max-height: 933px) {
+  .question-images {
+    margin-bottom: 4.5vw;
 
   }
 }
+
 
 
 .tabla-tipos {
@@ -661,7 +593,7 @@ h2 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5.5vw;
+  margin-bottom: 3.5vw;
 }
 
 .image-answer-type {}
@@ -829,6 +761,8 @@ h2 {
   background-size: cover;
 }
 
+
+
 .indev {
   display: flex;
   flex-direction: row;
@@ -863,4 +797,26 @@ h2 {
 
 .gray-filter {
   filter: grayscale(100%);
+}
+
+
+
+
+
+
+.pikachu {}
+
+@media (max-height: 933px) {
+  .pikachu {
+    background-image: url("./assets/pikachu.gif");
+    content: "";
+    position: fixed;
+    top: 75%;
+    left: 35%;
+    width: 100%;
+    height: 30%;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+  }
 }

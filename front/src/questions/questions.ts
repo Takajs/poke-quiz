@@ -1063,10 +1063,10 @@ const generateWhatDoesThisMoveDoQuestion = async (maxPokedexIndex: number): Prom
             questionAudios: [],
             allowsMultipleAnswers: false,
             score: 1,
-            onCorrectText: generateOnCorrectPrefix() + `"${capitalizeFirstLetter(moveName)}: ${capitalizeFirstLetter(moveDescription)}."`,
+            onCorrectText: generateOnCorrectPrefix() + `${capitalizeFirstLetter(moveName)}: ${capitalizeFirstLetter(moveDescription)}`,
             onCorrectImages: [...pokemonImages],
             onCorrectAudios: [],
-            onIncorrectText: generateOnIncorrectMessage(`"${capitalizeFirstLetter(moveName)}: ${capitalizeFirstLetter(moveDescription)}."`),
+            onIncorrectText: generateOnIncorrectMessage(`${capitalizeFirstLetter(moveName)}: ${capitalizeFirstLetter(moveDescription)}`),
             onIncorrectImages: [...pokemonImages],
             onIncorrectAudios: [],
             answers: answers
